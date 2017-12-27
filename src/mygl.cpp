@@ -99,7 +99,7 @@ void MyGL::render3DScene()
     // Render to our framebuffer rather than the viewport
     glBindFramebuffer(GL_FRAMEBUFFER, m_frameBuffer);
     // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    glViewport(0,0,this->width(),this->height());
+    glViewport(0,0,this->width() * this->devicePixelRatio(),this->height() * this->devicePixelRatio());
     // Clear the screen so that we only see newly drawn images
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -124,7 +124,7 @@ void MyGL::performPostprocessRenderPass()
     // Tell OpenGL to render to the viewport's frame buffer
     glBindFramebuffer(GL_FRAMEBUFFER, this->defaultFramebufferObject());
     // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    glViewport(0,0,this->width(),this->height());
+    glViewport(0,0,this->width() * this->devicePixelRatio(),this->height() * this->devicePixelRatio());
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // Bind our texture in Texture Unit 0
@@ -145,7 +145,7 @@ void MyGL::createRenderBuffers()
     // Bind our texture so that all functions that deal with textures will interact with this one
     glBindTexture(GL_TEXTURE_2D, m_renderedTexture);
     // Give an empty image to OpenGL ( the last "0" )
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->width(), this->height(), 0, GL_RGB, GL_UNSIGNED_BYTE, (void*)0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, this->width()* this->devicePixelRatio(), this->height()* this->devicePixelRatio(), 0, GL_RGB, GL_UNSIGNED_BYTE, (void*)0);
 
     // Set the render settings for the texture we've just created.
     // Essentially zero filtering on the "texture" so it appears exactly as rendered
@@ -157,7 +157,7 @@ void MyGL::createRenderBuffers()
 
     // Initialize our depth buffer
     glBindRenderbuffer(GL_RENDERBUFFER, m_depthRenderBuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, this->width(), this->height());
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, this->width()* this->devicePixelRatio(), this->height()* this->devicePixelRatio());
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depthRenderBuffer);
 
     // Set m_renderedTexture as the color output of our frame buffer
