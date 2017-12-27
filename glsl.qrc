@@ -19,5 +19,12 @@
         <file>glsl/post/worleywarp.frag.glsl</file>
         <file>glsl/surface/toonShader.frag.glsl</file>
         <file>glsl/surface/toonShader.vert.glsl</file>
+        <file>glsl/post/motionblur.frag.glsl</file>
+        <file>glsl/post/CRTV.frag.glsl</file>
+        <file>glsl/post/HSV.frag.glsl</file>
+        <file>glsl/post/greysobel.frag.glsl</file>
+        <file>glsl/post/checkered.frag.glsl</file>
+        <file>glsl/post/ray.frag.glsl</file>
+        <file>glsl/post/digitalize.frag.glsl</file>
     </qresource>
 </RCC>

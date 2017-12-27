@@ -74,6 +74,41 @@
       <string>Worley Noise</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>Motion Blur</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>CRTV</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>HSV</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>GreySobel</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>checkered</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>digitalize</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>ray</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QLabel" name="label">
@@ -207,6 +242,11 @@
       <string>Cube</string>
      </property>
     </item>
+    <item>
+     <property name="text">
+      <string>Songbird</string>
+     </property>
+    </item>
    </widget>
   </widget>
   <widget class="QTabWidget" name="tabWidget">
@@ -282,6 +322,11 @@
      <item>
       <property name="text">
        <string>Surface Normals</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Obsidian</string>
       </property>
      </item>
     </widget>

@@ -99,7 +99,7 @@ void MyGL::render3DScene()
     // Render to our framebuffer rather than the viewport
     glBindFramebuffer(GL_FRAMEBUFFER, m_frameBuffer);
     // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    glViewport(0,0,this->width() * this->devicePixelRatio(),this->height() * this->devicePixelRatio());
+    glViewport(0,0,this->width() * this->devicePixelRatio(),this->height()* this->devicePixelRatio());
     // Clear the screen so that we only see newly drawn images
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -124,7 +124,7 @@ void MyGL::performPostprocessRenderPass()
     // Tell OpenGL to render to the viewport's frame buffer
     glBindFramebuffer(GL_FRAMEBUFFER, this->defaultFramebufferObject());
     // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    glViewport(0,0,this->width() * this->devicePixelRatio(),this->height() * this->devicePixelRatio());
+    glViewport(0,0,this->width()* this->devicePixelRatio(),this->height()* this->devicePixelRatio());
     // Clear the screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     // Bind our texture in Texture Unit 0
@@ -228,6 +228,34 @@ void MyGL::createShaders()
     worley->create(":/glsl/post/passthrough.vert.glsl", ":/glsl/post/worleywarp.frag.glsl");
     m_postprocessShaders.push_back(worley);
 
+    std::shared_ptr<PostProcessShader> motionblur = std::make_shared<PostProcessShader>(this);
+    motionblur->create(":/glsl/post/passthrough.vert.glsl", ":/glsl/post/motionblur.frag.glsl");
+    m_postprocessShaders.push_back(motionblur);
+
+    std::shared_ptr<PostProcessShader> crtv = std::make_shared<PostProcessShader>(this);
+    crtv->create(":/glsl/post/passthrough.vert.glsl", ":/glsl/post/CRTV.frag.glsl");
+    m_postprocessShaders.push_back(crtv);
+
+    std::shared_ptr<PostProcessShader> hsv = std::make_shared<PostProcessShader>(this);
+    hsv->create(":/glsl/post/passthrough.vert.glsl", ":/glsl/post/HSV.frag.glsl");
+    m_postprocessShaders.push_back(hsv);
+
+    std::shared_ptr<PostProcessShader> greysobel = std::make_shared<PostProcessShader>(this);
+    greysobel->create(":/glsl/post/passthrough.vert.glsl", ":/glsl/post/greysobel.frag.glsl");
+    m_postprocessShaders.push_back(greysobel);
+
+    std::shared_ptr<PostProcessShader> checkered = std::make_shared<PostProcessShader>(this);
+    checkered->create(":/glsl/post/passthrough.vert.glsl", ":/glsl/post/checkered.frag.glsl");
+    m_postprocessShaders.push_back(checkered);
+
+    std::shared_ptr<PostProcessShader> digitalize = std::make_shared<PostProcessShader>(this);
+    digitalize->create(":/glsl/post/passthrough.vert.glsl", ":/glsl/post/digitalize.frag.glsl");
+    m_postprocessShaders.push_back(digitalize);
+
+    std::shared_ptr<PostProcessShader> ray = std::make_shared<PostProcessShader>(this);
+    ray->create(":/glsl/post/passthrough.vert.glsl", ":/glsl/post/ray.frag.glsl");
+    m_postprocessShaders.push_back(ray);
+
     slot_setCurrentPostprocessShaderProgram(0);
     mp_progPostprocessNoOp = m_postprocessShaders[0].get();
 
@@ -252,6 +280,12 @@ void MyGL::createMeshes()
     cube->loadTexture();
     cube->loadBGTexture();
     m_models.push_back(cube);
+
+    std::shared_ptr<Mesh> songbird = std::make_shared<Mesh>(this);
+    songbird->createFromOBJ(":/objs/songbird.obj", ":/textures/uvTest.jpg", ":/textures/mengersponge.jpg");
+    songbird->loadTexture();
+    songbird->loadBGTexture();
+    m_models.push_back(songbird);
 
     slot_setCurrentModel(0);
 }
@@ -289,6 +323,10 @@ void MyGL::createMatcapTextures()
     std::shared_ptr<Texture> normals = std::make_shared<Texture>(this);
     normals->create(":/textures/matcaps/normals.jpg");
     m_matcapTextures.push_back(normals);
+
+    std::shared_ptr<Texture> obsidian = std::make_shared<Texture>(this);
+    obsidian->create(":/textures/matcaps/obsidian.jpg");
+    m_matcapTextures.push_back(obsidian);
 
     // If this vector of textures were to be altered
     // while the program was running, storing a pointer

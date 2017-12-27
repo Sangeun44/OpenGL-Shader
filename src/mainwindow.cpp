@@ -38,4 +38,3 @@ void MainWindow::closeEvent(QCloseEvent *e)
     shaderControls->close();
     QMainWindow::closeEvent(e);
 }
-

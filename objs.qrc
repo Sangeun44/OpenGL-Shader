@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>objs/wahoo.obj</file>
         <file>objs/cow.obj</file>
+        <file>objs/songbird.obj</file>
     </qresource>
 </RCC>

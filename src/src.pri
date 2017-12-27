@@ -15,11 +15,11 @@ SOURCES += \
     $$PWD/shaderprograms/surfaceshader.cpp \
     $$PWD/texture.cpp \
     $$PWD/scene/camera.cpp \
-    $$PWD/tinyobj/tiny_obj_loader.cc \
     $$PWD/scene/mesh.cpp \
     $$PWD/myglslots.cpp \
     $$PWD/cameracontrols.cpp \
-    $$PWD/shadercontrols.cpp
+    $$PWD/shadercontrols.cpp \
+    $$PWD/tinyobj/tiny_obj_loader.cc
 
 HEADERS += \
     $$PWD/la.h \
