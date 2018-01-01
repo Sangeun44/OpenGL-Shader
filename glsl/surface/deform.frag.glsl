@@ -3,9 +3,9 @@
 uniform int u_Time;
 uniform sampler2D u_Texture; // The texture to be read from by this shader
 
-in vec4 fs_Pos;
-in vec4 fs_Nor;
-in vec4 fs_LightVec;
+in vec3 fs_Pos;
+in vec3 fs_Nor;
+in vec3 fs_LightVec;
 in vec2 fs_UV;
 
 layout(location = 0) out vec3 out_Col;
